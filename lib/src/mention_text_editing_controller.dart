@@ -17,7 +17,7 @@ class MentionTextEditingController extends TextEditingController {
     this.escapingMentionCharacter = Constants.escapingMentionCharacter,
     TextStyle? mentionStyle,
   })  : _onMentionablesChanged = onMentionablesChanged,
-        _storedMentionables = [],
+        storedMentionables = [],
         _mentionStyle =
             mentionStyle ?? const TextStyle(fontWeight: FontWeight.bold);
 
@@ -30,7 +30,7 @@ class MentionTextEditingController extends TextEditingController {
 
   /// List of [Mentionable] present in the [TextField].
   /// Order of elements is the same as in the [TextField].
-  final List<Mentionable> _storedMentionables;
+  final List<Mentionable> storedMentionables;
   final MentionablesChangedCallback _onMentionablesChanged;
 
   String? _getMentionCandidate(String value) {
@@ -49,13 +49,13 @@ class MentionTextEditingController extends TextEditingController {
   }
 
   Queue<Mentionable> _mentionQueue() =>
-      Queue<Mentionable>.from(_storedMentionables);
+      Queue<Mentionable>.from(storedMentionables);
 
   void _addMention(String candidate, Mentionable mentionable) {
     final indexSelection = selection.base.offset;
     final textPart = text.substring(0, indexSelection);
     final indexInsertion = textPart.countChar(escapingMentionCharacter);
-    _storedMentionables.insert(indexInsertion, mentionable);
+    storedMentionables.insert(indexInsertion, mentionable);
     text = '${text.replaceAll(candidate, escapingMentionCharacter)} ';
     selection =
         TextSelection.collapsed(offset: indexSelection - candidate.length + 2);
