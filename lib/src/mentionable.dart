@@ -8,6 +8,10 @@ abstract class Mentionable {
 
   String get _fullMentionLabel => '@$mentionLabel';
 
+  /// id of the entity
+  /// [String] to Identify the mention
+  String get id;
+
   /// Text that will be input after @ character in
   /// [TextField] to show mention.
   String get mentionLabel;
