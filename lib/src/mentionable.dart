@@ -12,6 +12,10 @@ abstract class Mentionable {
   /// [String] to Identify the mention
   String get id;
 
+  /// extra of the entity
+  /// [String] to Extras
+  String get extra;
+
   /// Text that will be input after @ character in
   /// [TextField] to show mention.
   String get mentionLabel;
